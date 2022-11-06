@@ -189,7 +189,6 @@ public class EchoServer extends AbstractServer
   public void handleServerConsoleMessage(String msg) 
   {	  
 	    	if(msg.startsWith("#")) {
-	    		ServerUI.display("I am here");
 	    		
 	    		this.handleCommand(msg);
 	    	}
