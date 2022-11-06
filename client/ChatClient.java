@@ -60,7 +60,7 @@ public class ChatClient extends AbstractClient
 	 * anything they wish.
 	 */
   @Override
-	public void connectionEstablished() {
+	protected void connectionEstablished() {
 	  try{
 		  this.sendToServer("#loginID "+loginID);}
 	  catch(IOException e) {
@@ -107,21 +107,21 @@ public class ChatClient extends AbstractClient
   private void handleCommand(String cmd) {
 	  
 	  if(cmd.equals("#quit")) {
-		  clientUI.display("The client will quit");
+		  clientUI.display(loginID+" will quit");
 		  quit();
 	  }
 	  
 	  else if(cmd.equals("#logoff")) {
 		  try {
 			  if (this.isConnected()) {
-				  clientUI.display("The client will log off");
+				  clientUI.display(loginID+" will log off");
 			this.closeConnection();
 		  }
 			  else {
-				  clientUI.display("Cannot log off! The client is already logged off");
+				  clientUI.display("Cannot log off! The client "+loginID+" is already logged off");
 			  }
 		} catch (IOException e) {
-			clientUI.display("There is a problem with logging the client off");
+			clientUI.display("There is a problem with logging the client "+loginID+" off");
 		}
 	  }
 	  
@@ -133,7 +133,7 @@ public class ChatClient extends AbstractClient
 			  st.nextToken();
 			  String host = st.nextToken();
 			  setHost(host);}
-		  else {clientUI.display("The client must log off to be able to change the host");}
+		  else {clientUI.display("The client "+loginID+" must log off to be able to change the host");}
 	  }
 	  
 	  else if(cmd.startsWith("#setport")) {
@@ -144,20 +144,20 @@ public class ChatClient extends AbstractClient
 			  st.nextToken();
 			  String port = st.nextToken();
 			  setPort(Integer.parseInt(port));}
-		  else {clientUI.display("The client must log off to be able to change the port");}
+		  else {clientUI.display("The client "+loginID+" must log off to be able to change the port");}
 	  }
 	  
 	  else if(cmd.equals("#login")) {
 		  try {
 			  if (!this.isConnected()) {
-				  clientUI.display("The client will log in");
+				  clientUI.display("The client "+loginID+" will log in");
 			this.openConnection();
 		  }
 			  else {
-				  clientUI.display("Cannot log in! The client is already logged in");
+				  clientUI.display("Cannot log in! The client "+loginID+" is already logged in");
 			  }
 		} catch (IOException e) {
-			clientUI.display("There is a problem with logging the client off");
+			clientUI.display("There is a problem with logging the client "+loginID+" off");
 		}
 	  }
 	  
