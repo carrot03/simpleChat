@@ -50,7 +50,6 @@ public class ChatClient extends AbstractClient
     this.clientUI = clientUI;
     openConnection();
     this.loginID=loginID;
-    connectionEstablished();
   }
 
   
@@ -61,7 +60,7 @@ public class ChatClient extends AbstractClient
 	 * anything they wish.
 	 */
   @Override
-	protected void connectionEstablished() {
+	public void connectionEstablished() {
 	  try{
 		  this.sendToServer("#loginID "+loginID);}
 	  catch(IOException e) {
