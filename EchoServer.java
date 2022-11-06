@@ -86,7 +86,6 @@ public class EchoServer extends AbstractServer
 		  count=1;
 	  }
 	  
-	  ServerUI.display("Message received: " + msg + " from " + client.getInfo(key));
 	 
     this.sendToAllClients(client.getInfo(key)+" "+msg);
   }
@@ -153,7 +152,7 @@ public class EchoServer extends AbstractServer
    */
   @Override
   protected void clientConnected(ConnectionToClient client) {
-	  ServerUI.display("A client is connected");}
+	  ServerUI.display(client.getInfo(key)+" is connected");}
 
   /**
    * Implementation of the Hook method called each time a client disconnects.
@@ -164,7 +163,7 @@ public class EchoServer extends AbstractServer
    */
   @Override
   synchronized protected void clientDisconnected(
-    ConnectionToClient client) {System.out.println("A client is disconnected");}
+    ConnectionToClient client) {System.out.println(client.getInfo(key)+" is disconnected");}
   /**
    * Implementation of the Hook method called each time an exception is thrown in a
    * ConnectionToClient thread.
